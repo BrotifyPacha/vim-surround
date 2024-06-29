@@ -221,15 +221,25 @@ function! s:wrap(string,char,type,removed,special)
       let after  = '\end'.matchstr(env,'[^}]*').'}'
     endif
   elseif newchar ==# 'f' || newchar ==# 'F'
-    let fnc = input('function: ')
-    if fnc != ""
-      let s:input = fnc."\<CR>"
-      let before = substitute(fnc,'($','','').'('
+    if !exists("g:surround_insert_func_name_interactivly")
+      let fnc = input('function: ')
+      if fnc != ""
+        let s:input = fnc."\<CR>"
+        let before = substitute(fnc,'($','','').'('
+        let after  = ')'
+        if newchar ==# 'F'
+          let before .= ' '
+          let after = ' ' . after
+        endif
+      endif
+    else
+      let before = '('
       let after  = ')'
       if newchar ==# 'F'
         let before .= ' '
         let after = ' ' . after
       endif
+      startinsert
     endif
   elseif newchar ==# "\<C-F>"
     let fnc = input('function: ')

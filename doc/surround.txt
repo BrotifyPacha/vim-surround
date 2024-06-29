@@ -148,6 +148,12 @@ function name inside the parentheses.
 If s is used, a leading but not trailing space is added.  This is useful for
 removing parentheses from a function call with csbs.
 
+If you prefer entering function name inside the buffer (possibly with a help
+from lsp completion). You can enable this behaviour with an option.
+>
+  let g:surround_insert_func_name_interactivly = "1"
+<
+
 CUSTOMIZING                                     *surround-customizing*
 
 The following adds a potential replacement on "-" (ASCII 45) in PHP files.
